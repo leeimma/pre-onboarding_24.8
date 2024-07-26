@@ -1,6 +1,7 @@
 package org.project.portfolio.member.controller
 
 import jakarta.validation.Valid
+import org.project.portfolio.common.exception.dto.BaseResponse
 import org.project.portfolio.member.dto.MemberDto
 import org.project.portfolio.member.service.MemberService
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,7 +17,8 @@ class MemberController (
 ){
     @PostMapping("/signup")
     @Throws
-    fun signUp(@Valid @RequestBody memberDto: MemberDto): String {
-        return memberService.signUp(memberDto)
+    fun signUp(@Valid @RequestBody memberDto: MemberDto): BaseResponse<Unit> {
+        val resultMsg: String = memberService.signUp(memberDto)
+        return BaseResponse(resultMsg)
     }
 }

@@ -3,6 +3,7 @@ package org.project.portfolio.member.dto
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
+import org.project.portfolio.member.entity.Member
 import java.time.LocalDateTime
 
 data class MemberDto(
@@ -41,4 +42,7 @@ data class MemberDto(
     var phone: String?
 ){
   var createDt: LocalDateTime? = null
+
+    fun toEntity(): Member =
+        Member(id, loginId!!, password!!, name!!, email!!, phone!!)
 }
